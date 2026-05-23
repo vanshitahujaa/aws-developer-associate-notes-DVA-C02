@@ -1,5 +1,7 @@
 # AWS Certified Developer Associate (DVA-C02) — Study Notes
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvanshitahujaa%2Faws-developer-associate-notes-DVA-C02&root-directory=dva-notes&project-name=dva-c02-notes&repository-name=dva-c02-notes)
+
 A topic-by-topic study app for the **AWS Certified Developer — Associate (DVA-C02)** exam, built as a React + Tailwind site optimized for reading on dark backgrounds.
 
 26 topics across 7 study phases — every page is structured the same way so revision is fast:
@@ -28,6 +30,17 @@ Build for production:
 npm run build
 npm run preview
 ```
+
+## Deploy
+
+This is a sub-folder app (`dva-notes/`) inside the repo. On Vercel:
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import this repo.
+2. Set **Root Directory** to `dva-notes`.
+3. Framework auto-detects as **Vite** — accept the defaults (`npm run build` → `dist`).
+4. Click **Deploy**.
+
+The `dva-notes/vercel.json` provides the SPA fallback rewrite and immutable cache headers on `/assets/*`, so subsequent deploys are zero-config.
 
 ## Stack
 
