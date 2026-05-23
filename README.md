@@ -1,7 +1,5 @@
 # AWS Certified Developer Associate (DVA-C02) — Study Notes
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvanshitahujaa%2Faws-developer-associate-notes-DVA-C02&root-directory=dva-notes&project-name=dva-c02-notes&repository-name=dva-c02-notes)
-
 A topic-by-topic study app for the **AWS Certified Developer — Associate (DVA-C02)** exam, built as a React + Tailwind site optimized for reading on dark backgrounds.
 
 26 topics across 7 study phases — every page is structured the same way so revision is fast:
