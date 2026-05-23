@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+
+  /* Palette tuned for long-read on dark */
+  --bg: #0d1015;
+  --bg-elev: #14171f;
+  --panel: #171a22;
+  --panel-2: #1c2029;
+  --border: #262a35;
+  --border-strong: #353a47;
+
+  --text: #d6dbe4;
+  --text-strong: #f3f5f8;
+  --text-muted: #8a93a3;
+
+  --accent: #ffa41b;
+  --accent-soft: rgba(255, 164, 27, 0.12);
+
+  --ok: #57c785;
+  --warn: #f5b350;
+  --err: #ef6e6e;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* === Static, calm background. No animation, no blur. === */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      1100px 600px at -10% -20%,
+      rgba(255, 164, 27, 0.05),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 600px at 110% 0%,
+      rgba(99, 102, 241, 0.05),
+      transparent 60%
+    ),
+    var(--bg);
+}
+
+/* === Solid panels (no backdrop-blur — keeps text crisp) === */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.panel-2 {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.panel-flat {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* === Custom scrollbar === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2f3b;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4051;
+}
+
+/* === Typography for content body === */
+.prose-body p {
+  margin: 0.5rem 0 0.75rem;
+  color: var(--text);
+}
+.prose-body strong {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.prose-body code {
+  background: #1f232c;
+  color: #f6c590;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.86em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* === Headings: hierarchy through size + weight, not color === */
+h1.title {
+  font-size: clamp(1.85rem, 2.4vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  line-height: 1.2;
+}
+h2.h-sec {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text-strong);
+  margin: 0;
+}
+
+/* === Bullet list: subtle, uniform, no rainbow === */
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bullet-list > li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin: 0.4rem 0;
+  color: var(--text);
+}
+.bullet-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.66em;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #5a6377;
+}
+
+/* Use this when you specifically WANT to flag bullets as warnings */
+.bullet-list.warn > li::before {
+  background: var(--err);
+  opacity: 0.85;
+}
+
+/* === Code block === */
+.codeblock {
+  background: #11141b;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #e4e7ee;
+  overflow-x: auto;
+}
+
+/* === Table === */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.tbl th {
+  text-align: left;
+  background: #1b1f28;
+  color: var(--text-strong);
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.tbl td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.tbl tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+/* === Pills (kept, but lower saturation) === */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: #1d2129;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.pill-orange {
+  background: rgba(255, 164, 27, 0.08);
+  color: #ffc36a;
+  border-color: rgba(255, 164, 27, 0.25);
+}
+.pill-blue {
+  background: rgba(120, 145, 255, 0.08);
+  color: #a8b8ff;
+  border-color: rgba(120, 145, 255, 0.22);
+}
+.pill-green {
+  background: rgba(87, 199, 133, 0.08);
+  color: #8fdcae;
+  border-color: rgba(87, 199, 133, 0.25);
+}
+.pill-red {
+  background: rgba(239, 110, 110, 0.08);
+  color: #f0a0a0;
+  border-color: rgba(239, 110, 110, 0.25);
+}
+.pill-purple {
+  background: rgba(168, 132, 247, 0.08);
+  color: #d3bdf3;
+  border-color: rgba(168, 132, 247, 0.25);
+}
+
+/* === Sidebar nav === */
+.nav-item {
+  width: 100%;
+  text-align: left;
+  font-size: 13.5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--text);
+  transition: background 120ms ease;
+}
+.nav-item:hover {
+  background: #1c2029;
+}
+.nav-active {
+  background: var(--accent-soft);
+  color: var(--text-strong);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+/* === Question option states === */
+.opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 0.92rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #161a22;
+  color: var(--text);
+  transition:
+    background 120ms,
+    border-color 120ms;
+}
+.opt:hover {
+  background: #1b1f29;
+  border-color: #3a4051;
+}
+.opt.selected {
+  border-color: var(--accent);
+  background: rgba(255, 164, 27, 0.07);
+}
+.opt.correct {
+  border-color: var(--ok);
+  background: rgba(87, 199, 133, 0.1);
+  color: #d6f0e0;
+}
+.opt.wrong {
+  border-color: var(--err);
+  background: rgba(239, 110, 110, 0.08);
+  color: #f3d2d2;
+}
+
+/* === Reveal animation (subtle) === */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 220ms ease-out;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+}
+
+/* === Quote / callout === */
+.callout {
+  border-left: 3px solid var(--accent);
+  padding: 8px 14px;
+  color: var(--text);
+  background: rgba(255, 164, 27, 0.04);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Smooth focus rings */
+button,
+input,
+textarea,
+select {
+  outline: none;
+}
+button:focus-visible,
+input:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 164, 27, 0.35);
+  border-radius: 6px;
+}
